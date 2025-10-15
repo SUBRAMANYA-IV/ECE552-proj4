@@ -6,13 +6,6 @@
 // 10: o_result from ALU
 // 01: PC+imm
 // 11: PC+4
-//
-//
-//
-//
-//
-//
-//
 module branch (
     input wire [2:0] func3,
     input wire jal,
