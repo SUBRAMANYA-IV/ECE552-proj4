@@ -1,4 +1,4 @@
 control unit - lalo
-alu control unit - max
+alu control unit - max; done?
 branch/jump control - vedaant
-one hot instruction format before immediate - 
+one hot instruction format before immediate - max; done?
