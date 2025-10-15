@@ -1,4 +1,20 @@
+Part 1 schematics:
+Schematic updates: set ALUOp as 3 bit signal
+traces for each instruction type: note each trace in seperate pdf
+
+
+Part 2 coding:
 control unit - lalo
 alu control unit - max; done?
 branch/jump control - vedaant
 one hot instruction format before immediate - max; done?
+hart.v connections
+divide into pipelining:
+    instruction fetch
+    decode
+    execute
+    access
+    write back
+
+part 3 synthesis:
+everything!
