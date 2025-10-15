@@ -1,1 +1,4 @@
-todo file
+control unit - lalo
+alu control unit - max
+branch/jump control - vedaant
+one hot instruction format before immediate - 
