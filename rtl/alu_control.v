@@ -24,23 +24,36 @@ module alu_control(
     // logical. This is only used for `i_opsel == 3'b011` (shift right).
     output wire i_arith,
 
-    // 3'b000: addition/subtraction if `i_sub` asserted
-    // 3'b001: shift left logical
-    // 3'b010,
-    // 3'b011: set less than/unsigned if `i_unsigned` asserted
-    // 3'b100: exclusive or
-    // 3'b101: shift right logical/arithmetic if `i_arith` asserted
-    // 3'b110: or
-    // 3'b111: and
+    // 3'b000: addition/subtraction if `i_sub` asserted //R type
+    // 3'b001: shift left logical //R type
+    // 3'b010, //R type
+    // 3'b011: set less than/unsigned if `i_unsigned` asserted //R type
+    // 3'b100: exclusive or //R type
+    // 3'b101: shift right logical/arithmetic if `i_arith` asserted //R type
+    // 3'b110: or //R type
+    // 3'b111: and //R type
     output wire [2:0] i_opsel
 );
+
+    wire [2:0] ri_type; //for R and I type instructions
+    wire [2:0] sbuj_type; //for S, B, U, J type instructions
+
     
+    //logic to assign smaller conditional signals
     assign i_arith = instruction_bits[3]; //funct7[5] bit
 
     assign i_unsigned = instruction_bits[0]; //funct3[0] bit
 
-    assign i_sub = instruction_bits[3]; //funct7[5] bit is 1
+    assign i_sub = instruction_bits[3] && (alu_op == 3'b000); //funct7[5] bit is 1
 
+    //logic to assign i_opsel
+    assign ri_type = instruction_bits[2:0]; //funct3 bits
+    assign sbuj_type = 3'b000;
+
+    assign i_opsel = (alu_op == 3'b000 || alu_op == 3'b001) ? ri_type : sbuj_type;
+
+
+    
 
 
 endmodule
