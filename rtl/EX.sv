@@ -1,5 +1,4 @@
 module EX(
-  input wire clk,
   input wire[31:0] i_pc,
   input wire[2:0] func3,
   input wire i_jal,
