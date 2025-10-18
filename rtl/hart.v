@@ -131,6 +131,29 @@ module hart #(
 `endif
 );
     // Fill in your implementation here.
+
+/* 
+ Instantiate IF section of proccesor 
+*/
+
+
+/* 
+ Instantiate ID section of proccesor 
+*/
+
+/* 
+ Instantiate EX section of proccesor 
+*/
+
+/* 
+ Instantiate MEM section of proccesor 
+*/
+
+/* 
+ Instantiate WB section of proccesor 
+*/
+
+
 endmodule
 
 `default_nettype wire
