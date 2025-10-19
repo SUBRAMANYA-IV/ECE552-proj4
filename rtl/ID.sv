@@ -16,8 +16,8 @@ module ID (
     output wire o_ALUop[1:0],     //output from control unit goes to ALU control
 
 
-    output wire [31:0] o_op1, //alu operand 1 
-    output wire [31:0] o_op2, //alu operand 2 
+    output wire [31:0] o_r_data1, //alu operand 1 
+    output wire [31:0] o_r_data2, //alu operand 2 
     output wire [31:0] o_imm,  //the generated immediate 
     output wire [31:0] o_Rdata2 // will feed into memory 'write data' port 
 );

@@ -14,15 +14,18 @@ module alu_control(
     // This is only used for branch comparisons and set less than.
     // For branch operations, the ALU result is not used, only the comparison
     // results.
+    //
+    //NOTE: only asserted for comp and slt, ie  
     output wire i_unsigned,
 
     // When asserted, addition operations should subtract instead.
     // This is only used for `i_opsel == 3'b000` (addition/subtraction).
-    output wire i_sub,
+    output wire o_sub,
 
     // When asserted, right shifts should be treated as arithmetic instead of
     // logical. This is only used for `i_opsel == 3'b011` (shift right).
-    output wire i_arith,
+    //
+    output wire o_arith,
 
     // 3'b000: addition/subtraction if `i_sub` asserted //R type
     // 3'b001: shift left logical //R type
@@ -32,7 +35,7 @@ module alu_control(
     // 3'b101: shift right logical/arithmetic if `i_arith` asserted //R type
     // 3'b110: or //R type
     // 3'b111: and //R type
-    output wire [2:0] i_opsel
+    output wire [2:0] o_opsel
 );
 
     wire [2:0] ri_type; //for R and I type instructions
