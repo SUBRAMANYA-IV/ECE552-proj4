@@ -50,7 +50,7 @@ module EX (
       .i_op2(i_op2),
       .o_result(o_result),
       .o_eq(o_eq),
-      .o_solt(o_slt)
+      .o_slt(o_slt)
   );
 
   //instantiate branch module
