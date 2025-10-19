@@ -7,18 +7,14 @@ module EX (
     input wire i_jalr,  //control signal for branch logic block
     input wire i_branch,  //control signal for branch logic block
     input wire [2:0] i_ALUOp,  //input to ALU CTRL unit
-
     input wire [31:0] i_op1,  //ALU operand1
     input wire [31:0] i_op2,  //ALU operand2
-
     input wire[31:0] i_imm,//i_imm is used for adding to current PC if we are in I instruction i_op2 will be input as immediate already
     input wire [3:0] func,  //combination of func7 and func 3 used by ALU control
 
     /* 
  Outputs defined below
  */
-    output wire o_eq,  //connect to ALU
-    output wire o_slt,  //connect to ALU
     output wire [31:0] o_result,  //connect to ALU
     output wire [1:0] o_PC_Select,  //output of Branch logic unit used to select next PC
     output wire [31:0] o_inc_pc  //The inputted PC + Immediate (used for branch adress calculation)
@@ -29,6 +25,8 @@ module EX (
   wire o_unsigned;
   wire o_arith;
   wire [2:0] o_opsel;
+  wire o_eq,  //connect to ALU
+  wire o_slt,  //connect to ALU
 
   //instantiate ALU control module
   alu_control ALU_cntrl (
@@ -64,8 +62,8 @@ module EX (
       .out(o_PC_Select)
   );
 
-
-
+  //PC + immediate for branch instructions
+  assign o_inc_pc = i_pc + i_imm; 
 
 
 endmodule
