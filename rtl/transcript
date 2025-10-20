@@ -40,3 +40,31 @@
 # Compile of rf.v was successful.
 # Compile of WB.v was successful.
 # 13 compiles, 0 failed with no errors.
+# Compile of alu.v was successful.
+# Compile of alu_control.v was successful.
+# Compile of branch.v was successful.
+# Compile of Control.v was successful.
+# Compile of hart.v was successful.
+# Compile of imm.v was successful.
+# Compile of imm_format.v was successful.
+# Compile of rf.v was successful.
+# Compile of WB.v was successful.
+# Compile of EX.v was successful.
+# Compile of ID.v was successful.
+# Compile of IF.v was successful.
+# Compile of MEM.v was successful.
+# 13 compiles, 0 failed with no errors.
+# Compile of alu.v was successful.
+# Compile of alu_control.v was successful.
+# Compile of branch.v was successful.
+# Compile of Control.v was successful.
+# Compile of hart.v was successful.
+# Compile of imm.v was successful.
+# Compile of imm_format.v was successful.
+# Compile of rf.v was successful.
+# Compile of WB.v was successful.
+# Compile of EX.v was successful.
+# Compile of ID.v was successful.
+# Compile of IF.v was successful.
+# Compile of MEM.v was successful.
+# 13 compiles, 0 failed with no errors.

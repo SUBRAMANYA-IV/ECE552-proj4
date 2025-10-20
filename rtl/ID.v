@@ -30,7 +30,7 @@ module ID (
     wire [31:0] regData2;//read data2 from register 
 
   //instantiate decoder?
-  decoder Control (
+  Control decoder(
       .i_opcode(i_instruct[6:0]),
       .jal(o_jal),
       .jalr(o_jalr),
@@ -45,7 +45,7 @@ module ID (
   );
 
   //instantiate register file
-  register_file rf (
+   rf register_file(
       .i_clk(clk),
       .i_rst(rst),
 
@@ -69,13 +69,13 @@ module ID (
  // [3] B-type
  // [4] U-type
  // [5] J-type
-OneHot imm_format(
+ imm_format OneHot(
    .opcode(i_instruct[6:0]),
    .i_format(OneHotDecode)    //ouput of imm_format
 );
 
   //instantiate imm_gen
-  imm_gen imm (
+   imm imm_gen(
       .i_inst(i_instruct),      //full instruction
       .i_format(OneHotDecode),  //instruction type input
       .o_immediate(o_imm)       //generated immediate 

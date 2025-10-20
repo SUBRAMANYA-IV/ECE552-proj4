@@ -11,5 +11,18 @@ module WB(
   output wire [31:0] o_dataSel // data selected from mux to feedback into write port of Register file
   );
 
+  /*
+  4-1 MUX to select what data is fed back into regWrite port 
+  00 -> PC+4  (save incremented PC for jump return address)
+  01 -> i_imm (save immediate for LUI )  
+  10 -> ALU result
+  11 -> Data from Memory
+  */
+  assign o_dataSel = 
+   (i_MUXsel == 2'b00) ? i_PC4 
+  :(i_MUXsel == 2'b01) ? i_imm
+  :(i_MUXsel == 2'b10) ? i_AluRslt : i_MemData;
+
+
 endmodule
 `default_nettype wire
