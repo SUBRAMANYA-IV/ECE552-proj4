@@ -12,14 +12,23 @@ module imm_format(
     output wire [5:0] i_format
 );
 
+localparam R_type = 7'b0110011;
+localparam I_type = 7'b0010011;
+localparam Load   = 7'b0000011; 
+localparam S_type = 7'b0100011; 
+localparam B_type = 7'b1100011; 
+localparam LUI    = 7'b0110111; //(U-type)
+localparam auipc  = 7'b0010111; //(U-type)
+localparam Jump   = 7'b1101111; //jal
+localparam JumpR  = 7'b1100111; //jalr
 
-    assign i_format = (opcode == 7'b011_0011) ? 6'b00_0001 : // R-type
-                      (opcode == 7'b000_0011 || opcode == 7'b001_0011 || opcode == 7'b110_0111) ? 6'b000010 : // I-type
-                      (opcode == 7'b010_0011) ? 6'b000100 : // S-type
-                      (opcode == 7'b110_0011) ? 6'b001000 : // B-type
-                      (opcode == 7'b011_0111 || opcode == 7'b001_0111) ? 6'b010000 : // U-type
-                      (opcode == 7'b110_1111) ? 6'b100000 : // J-type
-                      6'b000000; // default to R-type for don't care
+    assign i_format = (opcode == R_type) ? 6'b000001 : // R-type
+                      (opcode == Load || opcode == I_type || opcode == JumpR) ? 6'b000010 : // I-type
+                      (opcode ==  S_type) ? 6'b000100 : // S-type
+                      (opcode ==  B_type) ? 6'b001000 : // B-type
+                      (opcode == LUI || opcode == auipc) ? 6'b010000 : // U-type
+                      (opcode == Jump) ? 6'b100000 : // J-type
+                      6'b000001; // default to R-type for don't care
 
 
 

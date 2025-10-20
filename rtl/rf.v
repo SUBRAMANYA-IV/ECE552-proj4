@@ -49,21 +49,21 @@ module rf #(
     input  wire [31:0] i_rd_wdata
 );
 
-    reg [31:0] rf_mem [31:0]; //register file memory
+    reg [31:0] mem [31:0]; //register file memory
     integer i; //counter for reset loop
 
     always @(posedge i_clk) begin
         if (i_rst) begin //reset case (set all to 0)
             for (i = 0; i < 32; i = i + 1) begin
-                rf_mem[i] <= 32'd0;
+                mem[i] <= 32'd0;
             end
         end else if (i_rd_wen && (i_rd_waddr != 5'd0)) begin //only write if write enabled
-            rf_mem[i_rd_waddr] <= i_rd_wdata;
+            mem[i_rd_waddr] <= i_rd_wdata;
         end
     end
 
-    assign o_rs1_rdata = (BYPASS_EN && i_rd_wen && (i_rd_waddr == i_rs1_raddr) && (i_rd_waddr != 5'd0)) ? i_rd_wdata : rf_mem[i_rs1_raddr]; //continuous asssign for output
-    assign o_rs2_rdata = (BYPASS_EN && i_rd_wen && (i_rd_waddr == i_rs2_raddr) && (i_rd_waddr != 5'd0)) ? i_rd_wdata : rf_mem[i_rs2_raddr]; //continuous asssign for output
+    assign o_rs1_rdata = (BYPASS_EN && i_rd_wen && (i_rd_waddr == i_rs1_raddr) && (i_rd_waddr != 5'd0)) ? i_rd_wdata : mem[i_rs1_raddr]; //continuous asssign for output
+    assign o_rs2_rdata = (BYPASS_EN && i_rd_wen && (i_rd_waddr == i_rs2_raddr) && (i_rd_waddr != 5'd0)) ? i_rd_wdata : mem[i_rs2_raddr]; //continuous asssign for output
 
 
 

@@ -5,8 +5,10 @@ module hart #(
 ) (
     // Global clock.
     input  wire        i_clk,
+
     // Synchronous active-high reset.
     input  wire        i_rst,
+
     // Instruction fetch goes through a read only instruction memory (imem)
     // port. The port accepts a 32-bit address (e.g. from the program counter)
     // per cycle and combinationally returns a 32-bit instruction word. This
@@ -17,8 +19,10 @@ module hart #(
     // 32-bit read address for the instruction memory. This is expected to be
     // 4 byte aligned - that is, the two LSBs should be zero.
     output wire [31:0] o_imem_raddr,
+
     // Instruction word fetched from memory, available on the same cycle.
     input  wire [31:0] i_imem_rdata,
+
     // Data memory accesses go through a separate read/write data memory (dmem)
     // that is shared between read (load) and write (stored). The port accepts
     // a 32-bit address, read or write enable, and mask (explained below) each
@@ -66,7 +70,7 @@ module hart #(
     // the other three bytes of the aligned word unaffected. Remember to shift
     // the value of the `sb` instruction left by 24 bits to place it in the
     // appropriate byte lane.
-    output wire [ 3:0] o_dmem_mask,
+    output wire [3:0] o_dmem_mask,
     // The 32-bit word read from data memory. When `o_dmem_ren` is asserted,
     // this will immediately reflect the contents of memory at the specified
     // address, for the bytes enabled by the mask. When read enable is not
@@ -129,8 +133,163 @@ module hart #(
 `ifdef RISCV_FORMAL
     ,`RVFI_OUTPUTS,
 `endif
+); 
+
+/*
+Delcleration of any extra wires needed for connecting modules and for signals used across modules 
+*/ 
+
+wire [31:0] current_PC;       //will hold current PC value 
+wire [31:0] next_PC;          //holds the adress to be updated in PC next 
+wire [31:0] PC_plus4;         //will hold PC+4 value
+wire [31:0] curr_instruct;    //holds current instruction
+
+wire jal_C;               //control signal 
+wire jalr_C;              //control signal 
+wire branch_C;            //control signal 
+wire MemRead_C;           //control signal 
+wire MemWrite_C;          //control signal 
+wire [1:0] Data_sel_C;    //control signal 
+wire [2:0] ALUop_C;       //control signal 
+wire [31:0] ALU_operand1; //alu operand 1
+wire [31:0] ALU_operand2; //alu operand 2
+wire [31:0] immediate_val;//generated immeidate 
+wire [31:0] Mem_WD;       //feeds into memory write data port 
+wire [2:0]  func3_val;    //feeds into branch logic block
+wire [3:0]  func_val;     //feeds into ALU control block
+
+wire [31:0] ALU_result;   //ALU operation result
+wire [1:0]  PC_MUX_SEL;   //MUX select signal for choosing next PC
+wire [31:0] PC_offset;    //PC + immediate offset value
+wire [31:0] MEM_DATA;     //Data returned from memory read  
+wire [31:0]  WB_DATA;     //data to be input into register file   
+/* 
+ Instantiate IF section of proccesor 
+*/
+
+IF fetch_inst(
+  .i_clk(i_clk),              //input- clk to control PC update
+  .i_rst(i_rst),              //input- used to reset PC to starting value
+  .i_NextPC(next_PC),                //input- next PC value                           
+
+  .o_PC(current_PC),            //output- current PC feed into instruction memory and other locations (schematic) 
+  .o_inc_pc(PC_plus4)           //output- current PC + 4 
 );
-    // Fill in your implementation here.
+
+assign o_imem_raddr = current_PC;     //assign instruction memory read adress to current PC
+assign curr_instruct = i_imem_rdata;  //assign current instruction to the input from instruction memory
+
+/* 
+ Instantiate ID section of proccesor 
+*/
+
+ID decode_I(
+   .rst(i_rst),                    //input- to RF
+   .clk(i_clk),                    //input- to RF
+   .i_instruct(curr_instruct),     //input- full instruction input
+   .i_write_back(WB_DATA),         //input- from write back stage goes into RF write port      *************************fill in 
+   .i_currentPC(current_PC),       //input- the current PC value (used for auipc instruction)
+
+   .o_jal(jal_C),            //output- from control unit
+   .o_jalr(jalr_C),          //output- from control unit
+   .o_branch(branch_C),      //output- from control unit
+   .o_MemRead(MemRead_C),    //output- from control unit
+   .o_Data_sel(Data_sel_C),  //output- from control unit used for WB module
+   .o_MemWrite(MemWrite_C),  //output- from control unit
+   .o_op1(ALU_operand1),     //output- from control unit (select ALU operand)
+   .o_op2(ALU_operand2),     //output- from control unit (selects ALU operand)
+   .o_ALUop(ALUop_C),        //output- from control unit goes to ALU control
+   .o_imm(immediate_val),    //output- the generated immediate 
+   .o_Rdata2(Mem_WD),        //output- will feed into memory 'write data' port 
+   .func(func_val),          //output- combination of func7 and func3 for ALU control block
+   .func3(func3_val)         //output- func 3 for branch logic 
+);
+
+/* 
+ Instantiate EX section of proccesor 
+*/
+EX execute_I(
+    .i_pc(current_PC),            //input- Current PC input should be added to immediate (used for branch instructions)
+    .func3(func3_val),            //input- func 3 input for branch logic block (branch.v file)
+    .i_jal(jal_C),                //input- control signal for branch logic block
+    .i_jalr(jalr_C),              //input- control signal for branch logic block
+    .i_branch(branch_C),          //input- control signal for branch logic block
+    .i_ALUOp(ALUop_C),            //input- input to ALU CTRL unit
+    .i_op1(ALU_operand1),         //input- ALU operand1
+    .i_op2(ALU_operand2),         //input- ALU operand2
+    .i_imm(immediate_val),        //input- i_imm is used for adding to current PC if we are in I instruction i_op2 will be input as immediate already
+    .func(func_val),              //input- combination of func7 and func 3 used by ALU control
+    
+    .o_result(ALU_result),        //output- ALU result
+    .o_PC_Select(PC_MUX_SEL),     //output- MUX select signals from branch logic unit used to select next PC
+    .o_inc_pc(PC_offset)          //output- The current PC + Immediate (used for branch adress calculation)
+);
+
+
+/* 
+ Instantiate MEM section of proccesor  (actual memory access done outside MEM module)
+*/
+
+MEM memory_acces(
+  .i_aluResult(ALU_result),       //input- ALU result can be used for either memory adress or multiplexed to next PC
+  .i_PC4(PC_plus4),               //input- previous PC+4 used as input for multiplexer
+  .i_PCimm(PC_offset),            //input- previous PC+imm used as input for multiplexer 
+  .i_MUXpc(PC_MUX_SEL),           //input- select signal used to select next PC
+
+  .o_nxtPC(next_PC)                      //output- the next PC based off Mux select signals 
+  );
+
+ assign o_dmem_addr = ALU_result;  //assign memory adress port to ALU result  
+ assign o_dmem_ren  = MemRead_C;   //assign Memory Read enable signal 
+ assign o_dmem_wen  = MemWrite_C;  //assign Memory Write enable signal 
+ assign o_dmem_wdata = Mem_WD;     //assign Memory Write data port to register output #2
+ assign MEM_DATA = i_dmem_rdata;    //data returned from memory 
+
+/* 
+ Instantiate WB section of proccesor 
+*/
+WB writeback(
+
+  .i_MemData(MEM_DATA),      //input-  data coming from Memory
+  .i_AluRslt(ALU_result),    //input- ALU operation result 
+  .i_imm(immediate_val),     //input- output from immediate generator 
+  .i_PC4(PC_plus4),          //input- incremented PC (used to save jump return adress in register)
+  .i_MUXsel(Data_sel_C),     //input- MUX select signals coming from control unit 
+
+  .o_dataSel(WB_DATA)        //output- data selected from mux to feedback into write port of Register file
+  );
+
+
+
+
+/*
+THIS section still needs to be checked and filled in properly (some values are being used as placeholders for now)
+We can add extra output signals from modules to connect below 
+*/
+assign o_dmem_mask = 4'b1111; //this used to control half word/byte loads and write (set to full word only for now)
+
+assign o_retire_valid = (i_rst) ? 1'b0 : 1'b1; //one instruction should be done every cycle
+assign o_retire_inst      = curr_instruct;
+assign o_retire_trap      = 1'b0;                           // implement trap detection later
+assign o_retire_halt      = (curr_instruct == 32'h00100073); // ebreak
+
+// retire register addresses (taken directly from the instruction fields)
+assign o_retire_rs1_raddr = curr_instruct[19:15];
+assign o_retire_rs2_raddr = curr_instruct[24:20];
+assign o_retire_rd_waddr  = curr_instruct[11:7];
+
+// retire register read data 
+// Ideally use the raw register-file read data
+assign o_retire_rs1_rdata = ALU_operand1;
+assign o_retire_rs2_rdata = ALU_operand2;
+
+// retire write-back info (what is written back this cycle)
+assign o_retire_rd_wdata  = WB_DATA;
+
+// retire PC values
+assign o_retire_pc        = current_PC;
+assign o_retire_next_pc   = next_PC;
+
 endmodule
 
 `default_nettype wire

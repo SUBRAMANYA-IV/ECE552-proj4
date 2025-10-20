@@ -1,0 +1,88 @@
+# Compile of alu.v was successful.
+# Compile of alu_control.v was successful.
+# Compile of branch.v was successful.
+# Compile of Control.v was successful.
+# Compile of hart.v was successful.
+# Compile of imm.v was successful.
+# Compile of imm_format.v was successful.
+# Compile of rf.v was successful.
+# Compile of WB.v was successful.
+# Compile of EX.v was successful.
+# Compile of ID.v was successful.
+# Compile of IF.v was successful.
+# Compile of MEM.v was successful.
+# Compile of tb.v was successful.
+# 14 compiles, 0 failed with no errors.
+vsim -gui work.hart_tb
+# vsim -gui work.hart_tb 
+# Start time: 16:43:43 on Oct 20,2025
+# Loading work.hart_tb
+# Loading work.hart
+# Loading work.IF
+# Loading work.ID
+# Loading work.Control
+# Loading work.rf
+# Loading work.imm_format
+# Loading work.imm
+# Loading work.EX
+# Loading work.alu_control
+# Loading work.alu
+# Loading work.barrel_shifter
+# Loading work.branch
+# Loading work.MEM
+# Loading work.WB
+# ** Error: (vsim-3063) Port 'o_unsigned' not found in the connected module (4th connection).
+#    Time: 0 ns  Iteration: 0  Instance: /hart_tb/dut/execute_I/ALU_cntrl File: C:/ECE 552/ECE552-proj4-1/rtl/EX.v Line: 32
+# Error loading design
+# End time: 16:43:44 on Oct 20,2025, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 3
+# Compile of alu.v was successful.
+# Compile of alu_control.v was successful.
+# Compile of branch.v was successful.
+# Compile of Control.v was successful.
+# Compile of hart.v was successful.
+# Compile of imm.v was successful.
+# Compile of imm_format.v was successful.
+# Compile of rf.v was successful.
+# Compile of WB.v was successful.
+# Compile of EX.v was successful.
+# Compile of ID.v was successful.
+# Compile of IF.v was successful.
+# Compile of MEM.v was successful.
+# Compile of tb.v was successful.
+# 14 compiles, 0 failed with no errors.
+# Load canceled
+vsim -gui work.hart_tb
+# vsim -gui work.hart_tb 
+# Start time: 16:46:00 on Oct 20,2025
+# Loading work.hart_tb
+# Loading work.hart
+# Loading work.IF
+# Loading work.ID
+# Loading work.Control
+# Loading work.rf
+# Loading work.imm_format
+# Loading work.imm
+# Loading work.EX
+# Loading work.alu_control
+# Loading work.alu
+# Loading work.barrel_shifter
+# Loading work.branch
+# Loading work.MEM
+# Loading work.WB
+add wave -position insertpoint sim:/hart_tb/*
+run -all
+# Loading program.
+# ** Warning: (vsim-7) Failed to open readmem file "program.mem" in read mode.
+# No such file or directory. (errno = ENOENT)    : C:/ECE 552/ECE552-proj4-1/rtl/tb.v(86)
+#    Time: 0 ns  Iteration: 0  Instance: /hart_tb
+# Resetting hart.
+# Cycle  PC        Inst     rs1            rs2            [rd, load, store]
+# Program halted after           0 cycles.
+# r[a0]=00000000 (         0)
+# ** Note: $finish    : C:/ECE 552/ECE552-proj4-1/rtl/tb.v(125)
+#    Time: 20 ns  Iteration: 1  Instance: /hart_tb
+# 1
+# Break in Module hart_tb at C:/ECE 552/ECE552-proj4-1/rtl/tb.v line 125
+# End time: 17:09:01 on Oct 20,2025, Elapsed time: 0:23:01
+# Errors: 0, Warnings: 3

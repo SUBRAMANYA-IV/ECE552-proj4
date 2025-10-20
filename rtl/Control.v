@@ -9,21 +9,19 @@
 module Control( 
 
 //module inputs 
-input wire [6:0] i_opcode;
+input wire [6:0] i_opcode,
 
 //module outputs 
-output wire jal;
-output wire jalr;
-output wire branch;
-output wire MemRead;
-output wire MemWrite; 
-output wire ALUsrc2;
-output wire ALUsrc1;
-output wire RegWrite;
-
-output wire [1:0] Data_sel;
-output wire [2:0] ALUOp;
-
+output wire jal,    //feeds into branch logic
+output wire jalr,    //feeds into branch logic
+output wire branch,   //feeds into branch logic
+output wire MemRead,
+output wire MemWrite, 
+output wire ALUsrc2,
+output wire ALUsrc1,
+output wire RegWrite,
+output wire [1:0] Data_sel,
+output wire [2:0] ALUOp
 );
 
 localparam R_type = 7'b0110011;
@@ -92,8 +90,6 @@ assign Data_sel    = (i_opcode == R_type) ? 2'b10 :
                      (i_opcode == LUI)    ? 2'b01 :
                      (i_opcode == Jump)   ? 2'b00 : 
                      (i_opcode == JumpR)  ? 2'b00 : 2'b10;  
-
-
 
 endmodule
 
