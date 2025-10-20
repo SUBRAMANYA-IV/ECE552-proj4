@@ -9,7 +9,7 @@
 module Control( 
 
 //module inputs 
-input wire [6:0] i_opcode;
+input wire [6:0] i_opcode,
 
 //module outputs 
 output wire jal,    //feeds into branch logic

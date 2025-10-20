@@ -25,8 +25,8 @@ module EX (
   wire o_unsigned;
   wire o_arith;
   wire [2:0] o_opsel;
-  wire o_eq,  //connect to ALU
-  wire o_slt,  //connect to ALU
+  wire o_eq;  //connect to ALU
+  wire o_slt;  //connect to ALU
 
   //instantiate ALU control module
   alu_control ALU_cntrl (

@@ -1,0 +1,42 @@
+# Compile of alu.v was successful.
+# Compile of alu_control.v was successful.
+# Compile of branch.v was successful.
+# Compile of Control.v failed with 1 errors.
+# Compile of EX.sv failed with 1 errors.
+# Compile of hart.v was successful.
+# Compile of ID.sv was successful.
+# Compile of IF.sv was successful.
+# Compile of imm.v was successful.
+# Compile of imm_format.v was successful.
+# Compile of MEM.sv was successful.
+# Compile of rf.v was successful.
+# Compile of WB.v was successful.
+# 13 compiles, 2 failed with 2 errors.
+# Compile of alu.v was successful.
+# Compile of alu_control.v was successful.
+# Compile of branch.v was successful.
+# Compile of Control.v was successful.
+# Compile of EX.sv failed with 1 errors.
+# Compile of hart.v was successful.
+# Compile of ID.sv was successful.
+# Compile of IF.sv was successful.
+# Compile of imm.v was successful.
+# Compile of imm_format.v was successful.
+# Compile of MEM.sv was successful.
+# Compile of rf.v was successful.
+# Compile of WB.v was successful.
+# 13 compiles, 1 failed with 1 error.
+# Compile of alu.v was successful.
+# Compile of alu_control.v was successful.
+# Compile of branch.v was successful.
+# Compile of Control.v was successful.
+# Compile of EX.sv was successful.
+# Compile of hart.v was successful.
+# Compile of ID.sv was successful.
+# Compile of IF.sv was successful.
+# Compile of imm.v was successful.
+# Compile of imm_format.v was successful.
+# Compile of MEM.sv was successful.
+# Compile of rf.v was successful.
+# Compile of WB.v was successful.
+# 13 compiles, 0 failed with no errors.
