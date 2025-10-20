@@ -10,7 +10,7 @@ z2
 cModel Technology
 dC:/ECE 552/project3
 valu
-Z0 !s110 1760996601
+Z0 !s110 1760996722
 !i10b 1
 !s100 oc7H75DcELa>N=>JcF^zA2
 Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
@@ -20,13 +20,13 @@ Z3 dC:/ECE 552/ECE552-proj4-1/rtl
 Z4 w1760891909
 Z5 8C:/ECE 552/ECE552-proj4-1/rtl/alu.v
 Z6 FC:/ECE 552/ECE552-proj4-1/rtl/alu.v
-!i122 62
+!i122 76
 L0 8 89
 Z7 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z8 !s108 1760996601.000000
+Z8 !s108 1760996722.000000
 Z9 !s107 C:/ECE 552/ECE552-proj4-1/rtl/alu.v|
 Z10 !s90 -reportprogress|300|-work|work|-stats=none|C:/ECE 552/ECE552-proj4-1/rtl/alu.v|
 !i113 1
@@ -35,15 +35,15 @@ Z12 tCvgOpt 0
 valu_control
 R0
 !i10b 1
-!s100 Nb5WKP9C7c<6_`9dZN[C>2
+!s100 o4IQ^?20:hMTm_H[;2ODm1
 R1
-I1h[PO4Bg^8m9h1lV`8lZa2
+Idf1MIY1?gLBeMQH7LJo>D0
 R2
 R3
-Z13 w1760996390
+w1760996694
 8C:/ECE 552/ECE552-proj4-1/rtl/alu_control.v
 FC:/ECE 552/ECE552-proj4-1/rtl/alu_control.v
-!i122 63
+!i122 77
 L0 1 62
 R7
 r1
@@ -66,7 +66,7 @@ R3
 R4
 R5
 R6
-!i122 62
+!i122 76
 L0 98 42
 R7
 r1
@@ -79,7 +79,7 @@ R10
 R11
 R12
 vbranch
-Z14 !s110 1760996602
+Z13 !s110 1760996723
 !i10b 1
 !s100 V7j?]VNLM8A24R1eHJKVV1
 R1
@@ -89,20 +89,20 @@ R3
 w1760566686
 8C:/ECE 552/ECE552-proj4-1/rtl/branch.v
 FC:/ECE 552/ECE552-proj4-1/rtl/branch.v
-!i122 64
+!i122 78
 L0 9 22
 R7
 r1
 !s85 0
 31
-Z15 !s108 1760996602.000000
+Z14 !s108 1760996723.000000
 !s107 C:/ECE 552/ECE552-proj4-1/rtl/branch.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/ECE 552/ECE552-proj4-1/rtl/branch.v|
 !i113 1
 R11
 R12
 vControl
-R14
+R13
 !i10b 1
 !s100 ]THJ>oC^6LPabG?IMeVmi3
 R1
@@ -112,13 +112,13 @@ R3
 w1760976933
 8C:/ECE 552/ECE552-proj4-1/rtl/Control.v
 FC:/ECE 552/ECE552-proj4-1/rtl/Control.v
-!i122 65
+!i122 79
 L0 9 86
 R7
 r1
 !s85 0
 31
-R15
+R14
 !s107 C:/ECE 552/ECE552-proj4-1/rtl/Control.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/ECE 552/ECE552-proj4-1/rtl/Control.v|
 !i113 1
@@ -126,7 +126,7 @@ R11
 R12
 n@control
 vEX
-Z16 !s110 1760996603
+Z15 !s110 1760996724
 !i10b 1
 !s100 z6RQmmOR6RACS?Oj64hFb2
 R1
@@ -136,13 +136,13 @@ R3
 w1760978017
 8C:/ECE 552/ECE552-proj4-1/rtl/EX.v
 FC:/ECE 552/ECE552-proj4-1/rtl/EX.v
-!i122 71
+!i122 85
 L0 3 67
 R7
 r1
 !s85 0
 31
-Z17 !s108 1760996603.000000
+Z16 !s108 1760996724.000000
 !s107 C:/ECE 552/ECE552-proj4-1/rtl/EX.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/ECE 552/ECE552-proj4-1/rtl/EX.v|
 !i113 1
@@ -150,53 +150,53 @@ R11
 R12
 n@e@x
 vhart
-R14
+R13
 !i10b 1
 !s100 Pj1O[c1l0ZNR8WWb9a1]G1
 R1
 IBJc^?0W7kA^Fa94j3Y>zN0
 R2
 R3
-R13
+Z17 w1760996390
 8C:/ECE 552/ECE552-proj4-1/rtl/hart.v
 FC:/ECE 552/ECE552-proj4-1/rtl/hart.v
-!i122 66
+!i122 80
 L0 1 293
 R7
 r1
 !s85 0
 31
-R15
+R14
 !s107 C:/ECE 552/ECE552-proj4-1/rtl/hart.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/ECE 552/ECE552-proj4-1/rtl/hart.v|
 !i113 1
 R11
 R12
 vhart_tb
-!s110 1760996604
+!s110 1760996725
 !i10b 1
 !s100 RG0gS6QES]A3G8Of;CXXF2
 R1
 IfJ56EOROBPW9[i3mU4]UD1
 R2
 R3
-R13
+R17
 8C:/ECE 552/ECE552-proj4-1/rtl/tb.v
 FC:/ECE 552/ECE552-proj4-1/rtl/tb.v
-!i122 75
+!i122 89
 L0 2 129
 R7
 r1
 !s85 0
 31
-R17
+R16
 !s107 C:/ECE 552/ECE552-proj4-1/rtl/tb.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/ECE 552/ECE552-proj4-1/rtl/tb.v|
 !i113 1
 R11
 R12
 vID
-R16
+R15
 !i10b 1
 !s100 JQ`Xm2Q[26Z1D@9DCU97=1
 R1
@@ -206,13 +206,13 @@ R3
 w1760978170
 8C:/ECE 552/ECE552-proj4-1/rtl/ID.v
 FC:/ECE 552/ECE552-proj4-1/rtl/ID.v
-!i122 72
+!i122 86
 L0 2 98
 R7
 r1
 !s85 0
 31
-R17
+R16
 !s107 C:/ECE 552/ECE552-proj4-1/rtl/ID.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/ECE 552/ECE552-proj4-1/rtl/ID.v|
 !i113 1
@@ -220,7 +220,7 @@ R11
 R12
 n@i@d
 vIF
-R16
+R15
 !i10b 1
 !s100 I5I<kHKz6TnVz@djl1=fJ3
 R1
@@ -230,13 +230,13 @@ R3
 w1760892787
 8C:/ECE 552/ECE552-proj4-1/rtl/IF.v
 FC:/ECE 552/ECE552-proj4-1/rtl/IF.v
-!i122 73
+!i122 87
 L0 3 19
 R7
 r1
 !s85 0
 31
-R17
+R16
 !s107 C:/ECE 552/ECE552-proj4-1/rtl/IF.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/ECE 552/ECE552-proj4-1/rtl/IF.v|
 !i113 1
@@ -244,7 +244,7 @@ R11
 R12
 n@i@f
 vimm
-R14
+R13
 !i10b 1
 !s100 zScGKgaJc037e:6HBhgUK1
 R1
@@ -254,20 +254,20 @@ R3
 w1760560111
 8C:/ECE 552/ECE552-proj4-1/rtl/imm.v
 FC:/ECE 552/ECE552-proj4-1/rtl/imm.v
-!i122 67
+!i122 81
 L0 7 25
 R7
 r1
 !s85 0
 31
-R15
+R14
 !s107 C:/ECE 552/ECE552-proj4-1/rtl/imm.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/ECE 552/ECE552-proj4-1/rtl/imm.v|
 !i113 1
 R11
 R12
 vimm_format
-R14
+R13
 !i10b 1
 !s100 U[D9M9P[[=S91jO@SAV]B2
 R1
@@ -277,20 +277,20 @@ R3
 w1760900839
 8C:/ECE 552/ECE552-proj4-1/rtl/imm_format.v
 FC:/ECE 552/ECE552-proj4-1/rtl/imm_format.v
-!i122 68
+!i122 82
 L0 1 35
 R7
 r1
 !s85 0
 31
-R15
+R14
 !s107 C:/ECE 552/ECE552-proj4-1/rtl/imm_format.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/ECE 552/ECE552-proj4-1/rtl/imm_format.v|
 !i113 1
 R11
 R12
 vMEM
-R16
+R15
 !i10b 1
 !s100 ioj7FZGem@I9jlm=TCaST0
 R1
@@ -300,13 +300,13 @@ R3
 w1760981524
 8C:/ECE 552/ECE552-proj4-1/rtl/MEM.v
 FC:/ECE 552/ECE552-proj4-1/rtl/MEM.v
-!i122 74
+!i122 88
 Z18 L0 2 26
 R7
 r1
 !s85 0
 31
-R17
+R16
 !s107 C:/ECE 552/ECE552-proj4-1/rtl/MEM.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/ECE 552/ECE552-proj4-1/rtl/MEM.v|
 !i113 1
@@ -314,30 +314,30 @@ R11
 R12
 n@m@e@m
 vrf
-R16
+R15
 !i10b 1
 !s100 NgXzXYB]LjXi;^gbaV5bU3
 R1
 IzB_jJIkLD=6;n[CPXW[[20
 R2
 R3
-R13
+R17
 8C:/ECE 552/ECE552-proj4-1/rtl/rf.v
 FC:/ECE 552/ECE552-proj4-1/rtl/rf.v
-!i122 69
+!i122 83
 L0 12 61
 R7
 r1
 !s85 0
 31
-R15
+R14
 !s107 C:/ECE 552/ECE552-proj4-1/rtl/rf.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/ECE 552/ECE552-proj4-1/rtl/rf.v|
 !i113 1
 R11
 R12
 vWB
-R16
+R15
 !i10b 1
 !s100 ?`IO;]WMUifL?WLA2KmAF0
 R1
@@ -347,13 +347,13 @@ R3
 w1760981181
 8C:/ECE 552/ECE552-proj4-1/rtl/WB.v
 FC:/ECE 552/ECE552-proj4-1/rtl/WB.v
-!i122 70
+!i122 84
 R18
 R7
 r1
 !s85 0
 31
-R17
+R16
 !s107 C:/ECE 552/ECE552-proj4-1/rtl/WB.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/ECE 552/ECE552-proj4-1/rtl/WB.v|
 !i113 1
