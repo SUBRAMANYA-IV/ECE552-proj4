@@ -10,11 +10,11 @@ branch/jump control - vedaant
 one hot instruction format before immediate - max; done?
 hart.v connections
 divide into pipelining:
-    instruction fetch
-    decode
-    execute
-    access
-    write back
+    instruction fetch (IF.v)
+    decode (ID.v)
+    execute (EX.v)
+    mem access (MEM.v)
+    write back (WB.v)
 
 part 3 synthesis:
 everything!
