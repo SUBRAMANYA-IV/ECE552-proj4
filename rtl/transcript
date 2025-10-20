@@ -1,70 +1,8 @@
-# Compile of alu.v was successful.
-# Compile of alu_control.v was successful.
-# Compile of branch.v was successful.
-# Compile of Control.v failed with 1 errors.
-# Compile of EX.sv failed with 1 errors.
-# Compile of hart.v was successful.
-# Compile of ID.sv was successful.
-# Compile of IF.sv was successful.
-# Compile of imm.v was successful.
-# Compile of imm_format.v was successful.
-# Compile of MEM.sv was successful.
-# Compile of rf.v was successful.
-# Compile of WB.v was successful.
-# 13 compiles, 2 failed with 2 errors.
-# Compile of alu.v was successful.
-# Compile of alu_control.v was successful.
-# Compile of branch.v was successful.
-# Compile of Control.v was successful.
-# Compile of EX.sv failed with 1 errors.
-# Compile of hart.v was successful.
-# Compile of ID.sv was successful.
-# Compile of IF.sv was successful.
-# Compile of imm.v was successful.
-# Compile of imm_format.v was successful.
-# Compile of MEM.sv was successful.
-# Compile of rf.v was successful.
-# Compile of WB.v was successful.
-# 13 compiles, 1 failed with 1 error.
-# Compile of alu.v was successful.
-# Compile of alu_control.v was successful.
-# Compile of branch.v was successful.
-# Compile of Control.v was successful.
-# Compile of EX.sv was successful.
-# Compile of hart.v was successful.
-# Compile of ID.sv was successful.
-# Compile of IF.sv was successful.
-# Compile of imm.v was successful.
-# Compile of imm_format.v was successful.
-# Compile of MEM.sv was successful.
-# Compile of rf.v was successful.
-# Compile of WB.v was successful.
-# 13 compiles, 0 failed with no errors.
-# Compile of alu.v was successful.
-# Compile of alu_control.v was successful.
-# Compile of branch.v was successful.
-# Compile of Control.v was successful.
-# Compile of hart.v was successful.
-# Compile of imm.v was successful.
-# Compile of imm_format.v was successful.
-# Compile of rf.v was successful.
-# Compile of WB.v was successful.
-# Compile of EX.v was successful.
-# Compile of ID.v was successful.
-# Compile of IF.v was successful.
-# Compile of MEM.v was successful.
-# 13 compiles, 0 failed with no errors.
-# Compile of alu.v was successful.
-# Compile of alu_control.v was successful.
-# Compile of branch.v was successful.
-# Compile of Control.v was successful.
-# Compile of hart.v was successful.
-# Compile of imm.v was successful.
-# Compile of imm_format.v was successful.
-# Compile of rf.v was successful.
-# Compile of WB.v was successful.
-# Compile of EX.v was successful.
-# Compile of ID.v was successful.
-# Compile of IF.v was successful.
-# Compile of MEM.v was successful.
-# 13 compiles, 0 failed with no errors.
+# vsim -c work.hart_tb -do "run -all ;quit" 
+# Start time: 16:18:03 on Oct 20,2025
+# ** Error: (vsim-3170) Could not find 'hart_tb'.
+#         Searched libraries:
+#             /home/vedaant/school_files/fall2025/ECE552/proj4/rtl/work
+# Error loading design
+# End time: 16:18:03 on Oct 20,2025, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 0

@@ -1,0 +1,30 @@
+# vsim -c work.hart_tb -do "run -all;quit" 
+# Start time: 16:30:26 on Oct 20,2025
+# Loading work.hart_tb
+# Loading work.hart
+# Loading work.IF
+# Loading work.ID
+# Loading work.Control
+# Loading work.rf
+# Loading work.imm_format
+# Loading work.imm
+# Loading work.EX
+# Loading work.alu_control
+# Loading work.alu
+# Loading work.barrel_shifter
+# Loading work.branch
+# Loading work.MEM
+# Loading work.WB
+# run -all
+# Loading program.
+# ** Warning: (vsim-7) Failed to open readmem file "program.mem" in read mode.
+# No such file or directory. (errno = ENOENT)    : tb.v(86)
+#    Time: 0 ns  Iteration: 0  Instance: /hart_tb
+# Resetting hart.
+# Cycle  PC        Inst     rs1            rs2            [rd, load, store]
+# Program halted after           0 cycles.
+# r[a0]=00000000 (         0)
+# ** Note: $finish    : tb.v(125)
+#    Time: 20 ns  Iteration: 1  Instance: /hart_tb
+# End time: 16:30:26 on Oct 20,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
