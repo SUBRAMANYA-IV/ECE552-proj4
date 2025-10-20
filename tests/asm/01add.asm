@@ -10,7 +10,7 @@ test_2:
  add x30, x1, x2
  li x29, 0x00000000
  li gp, 2
- bne x30, x29, fail
+ beq x30, x29, fail
 
 
 test_3:
