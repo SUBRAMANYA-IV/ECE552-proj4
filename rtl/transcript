@@ -1,8 +1,38 @@
-# vsim -c work.hart_tb -do "run -all ;quit" 
-# Start time: 16:18:03 on Oct 20,2025
-# ** Error: (vsim-3170) Could not find 'hart_tb'.
-#         Searched libraries:
-#             /home/vedaant/school_files/fall2025/ECE552/proj4/rtl/work
+# Compile of alu.v was successful.
+# Compile of alu_control.v was successful.
+# Compile of branch.v was successful.
+# Compile of Control.v was successful.
+# Compile of hart.v was successful.
+# Compile of imm.v was successful.
+# Compile of imm_format.v was successful.
+# Compile of rf.v was successful.
+# Compile of WB.v was successful.
+# Compile of EX.v was successful.
+# Compile of ID.v was successful.
+# Compile of IF.v was successful.
+# Compile of MEM.v was successful.
+# Compile of tb.v was successful.
+# 14 compiles, 0 failed with no errors.
+vsim -gui work.hart_tb
+# vsim -gui work.hart_tb 
+# Start time: 16:43:43 on Oct 20,2025
+# Loading work.hart_tb
+# Loading work.hart
+# Loading work.IF
+# Loading work.ID
+# Loading work.Control
+# Loading work.rf
+# Loading work.imm_format
+# Loading work.imm
+# Loading work.EX
+# Loading work.alu_control
+# Loading work.alu
+# Loading work.barrel_shifter
+# Loading work.branch
+# Loading work.MEM
+# Loading work.WB
+# ** Error: (vsim-3063) Port 'o_unsigned' not found in the connected module (4th connection).
+#    Time: 0 ns  Iteration: 0  Instance: /hart_tb/dut/execute_I/ALU_cntrl File: C:/ECE 552/ECE552-proj4-1/rtl/EX.v Line: 32
 # Error loading design
-# End time: 16:18:03 on Oct 20,2025, Elapsed time: 0:00:00
-# Errors: 1, Warnings: 0
+# End time: 16:43:44 on Oct 20,2025, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 3

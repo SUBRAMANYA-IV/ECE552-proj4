@@ -16,7 +16,7 @@ module alu_control(
     // results.
     //
     //NOTE: only asserted for comp and slt, ie  
-    output wire i_unsigned,
+    output wire o_unsigned,
 
     // When asserted, addition operations should subtract instead.
     // This is only used for `i_opsel == 3'b000` (addition/subtraction).
