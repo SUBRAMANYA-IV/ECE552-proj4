@@ -79,6 +79,8 @@ module hart_tb ();
 
     integer cycles;
     initial begin
+    $dumpfile("waves.vcd");
+    $dumpvars(0, hart_tb);
         clk = 0;
 
         // Load the test program into memory at address 0.

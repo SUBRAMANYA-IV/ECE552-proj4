@@ -20,12 +20,12 @@ module branch (
   assign out=
     (jal)?(2'b01):
     (jalr)?(2'b00): //DOUBLE CHECK THIS: SHOULD BE OUTPUT OF REGISTER, IE THROUGH ALU
-      (func3==3'b000)?(eq?2'b01:2'b11):
-    (func3==3'b001)?(~eq?2'b01:2'b11):
-    (func3==3'b100)?(slt?2'b01:2'b11):
-    (func3==3'b101)?((~slt || eq)?2'b01:2'b11):
-    (func3==3'b110)?(slt?2'b01:2'b11):
-    (func3==3'b111)?((~slt||eq)?2'b01:2'b11):
-    2'b00;
+      (branch & func3==3'b000)?(eq?2'b01:2'b11):
+    (branch & func3==3'b001)?(~eq?2'b01:2'b11):
+    (branch & func3==3'b100)?(slt?2'b01:2'b11):
+    (branch &func3==3'b101)?((~slt || eq)?2'b01:2'b11):
+    (branch & func3==3'b110)?(slt?2'b01:2'b11):
+    (branch& func3==3'b111)?((~slt||eq)?2'b01:2'b11):
+    2'b11;
 endmodule
 

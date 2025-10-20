@@ -1,4 +1,4 @@
-module alu_control(
+module alu_control (
     //bits [30, 14:12] of instruction, 30 is funct7[5], 14:12 is funct3
     input wire [3:0] instruction_bits,
 
@@ -38,25 +38,25 @@ module alu_control(
     output wire [2:0] o_opsel
 );
 
-    wire [2:0] ri_type; //for R and I type instructions
-    wire [2:0] sbuj_type; //for S, B, U, J type instructions
-
-    
-    //logic to assign smaller conditional signals
-    assign i_arith = instruction_bits[3]; //funct7[5] bit
-
-    assign i_unsigned = instruction_bits[0]; //funct3[0] bit
-
-    assign i_sub = instruction_bits[3] && (alu_op == 3'b000); //funct7[5] bit is 1
-
-    //logic to assign i_opsel
-    assign ri_type = instruction_bits[2:0]; //funct3 bits
-    assign sbuj_type = 3'b000;
-
-    assign i_opsel = (alu_op == 3'b000 || alu_op == 3'b001) ? ri_type : sbuj_type;
+  wire [2:0] ri_type;  //for R and I type instructions
+  wire [2:0] sbuj_type;  //for S, B, U, J type instructions
 
 
-    
+  //logic to assign smaller conditional signals
+  assign o_arith = instruction_bits[3];  //funct7[5] bit
+
+  assign o_unsigned = instruction_bits[0];  //funct3[0] bit
+
+  assign o_sub = instruction_bits[3] && (alu_op == 3'b000);  //funct7[5] bit is 1
+
+  //logic to assign i_opsel
+  assign ri_type = instruction_bits[2:0];  //funct3 bits
+  assign sbuj_type = 3'b000;
+
+  assign o_opsel = (alu_op == 3'b000 || alu_op == 3'b001) ? ri_type : sbuj_type;
+
+
+
 
 
 endmodule

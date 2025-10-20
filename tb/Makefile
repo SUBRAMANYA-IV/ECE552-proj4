@@ -1,12 +1,12 @@
-.ONESHELL:
-PROGRAM ?= 01add
-assemble:
-	docker run --rm -v $(PWD):/src coderkalyan/ece552-tools:latest bash -c "\
-		cd /src && \
-		riscv64-unknown-elf-as -march=rv32i -mabi=ilp32 $(PROGRAM).asm -o $(PROGRAM).o && \
-		riscv64-unknown-elf-objcopy -O binary -j .text --pad-to=0x400 $(PROGRAM).o $(PROGRAM).hex \
-	"
-	xxd -g 1 -c 4 -p $(PROGRAM).hex | sed 's/../& /g' > ../../tb/program.mem
+# Assemble your RV32I assembly file into an object file
+riscv64-unknown-elf-as -march=rv32i -mabi=ilp32 01add.asm -o 01add.o
 
-clean:
-	rm -f *.o *.hex ../../tb/program.mem ../../tb/a.out
+# Link it into an ELF executable (no standard library)
+riscv64-unknown-elf-ld -o 01add.elf 01add.o
+
+# Convert ELF → raw binary (for loading into your CPU)
+riscv64-unknown-elf-objcopy -O binary 01add.elf 01add.bin
+
+# OR, for Verilog $readmemh
+riscv64-unknown-elf-objcopy -O verilog 01add.elf 01add.hex
+
