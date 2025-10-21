@@ -214,6 +214,9 @@ Delcleration of any extra wires needed for connecting modules and for signals us
       .func3     (func3_val)       //output- func 3 for branch logic 
   );
 
+//wirte adress should be 0 when instruction does not write to register 
+wire [4:0] rf_writeAddress; 
+assign rf_writeAddress = (regWrite) ? curr_instruct[11:7]: 5'b00000; 
 
   rf rf (
       .i_clk(i_clk),
@@ -225,7 +228,7 @@ Delcleration of any extra wires needed for connecting modules and for signals us
       .o_rs1_rdata(regData1),
       .o_rs2_rdata(regData2),
 
-      .i_rd_waddr(curr_instruct[11:7]),
+      .i_rd_waddr(rf_writeAddress),
       .i_rd_wen  (regWrite),
       .i_rd_wdata(WB_DATA)
   );

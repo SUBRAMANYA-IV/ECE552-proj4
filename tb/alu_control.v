@@ -40,7 +40,6 @@ module alu_control (
     output wire [2:0] o_opsel
 );
 
-
   wire [2:0] sbuj_type;  //for S, B, U, J type instructions
 
   wire [2:0] func3;
@@ -64,7 +63,6 @@ module alu_control (
 
 
   assign sbuj_type = 3'b000;
-
   assign o_opsel = (alu_op == 3'b000 || alu_op == 3'b001) ? func3 : sbuj_type;
 
 

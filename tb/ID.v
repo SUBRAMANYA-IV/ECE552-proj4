@@ -13,12 +13,12 @@ module ID (
     output wire o_MemRead, //output from control unit
     output wire [1:0] o_Data_sel, //output from control unit used for WB module
     output wire o_MemWrite,       //output from control unit
-    output wire [31:0] o_op1,        //output from control unit (select ALU operand)
-    output wire [31:0] o_op2,        //output from control unit (selects ALU operand)
-    output wire [2:0] o_ALUop,     //output from control unit goes to ALU control
-    output wire [31:0] o_imm,  //the generated immediate 
+    output wire [31:0] o_op1,       //output from control unit (select ALU operand)
+    output wire [31:0] o_op2,      //output from control unit (selects ALU operand)
+    output wire [2:0] o_ALUop,    //output from control unit goes to ALU control
+    output wire [31:0] o_imm,     //the generated immediate 
     output wire [31:0] o_Rdata2, // will feed into memory 'write data' port 
-    output wire o_RegWrite, //enable signal for register writing
+    output wire o_RegWrite,      //enable signal for register writing
 
     output wire [3:0] func,
     output wire [2:0] func3
@@ -42,7 +42,6 @@ module ID (
       .Data_sel(o_Data_sel),
       .ALUOp(o_ALUop)
   );
-
 
 
  // Instruction format, determined by the instruction decoder based on the
