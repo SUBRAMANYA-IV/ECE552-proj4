@@ -1,3 +1,4 @@
+`default_nettype none
 module imm_format(
     input wire [6:0] opcode,
 
@@ -31,5 +32,5 @@ localparam JumpR  = 7'b1100111; //jalr
                       6'b000001; // default to R-type for don't care
 
 
-
 endmodule
+`default_nettype wire

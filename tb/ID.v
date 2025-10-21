@@ -6,6 +6,7 @@ module ID (
     input wire [31:0] i_currentPC, //the current PC value (used for auipc instruction)
     input wire [31:0] i_regData1,//read data1 from register
     input wire [31:0] i_regData2,//read data2 from register 
+    
     output wire o_jal,
     output wire o_jalr,    //output from control unit
     output wire o_branch,  //output from control unit
@@ -42,8 +43,7 @@ module ID (
       .ALUOp(o_ALUop)
   );
 
-  //instantiate register file
-  //TODO: move this up to hart?
+
 
  // Instruction format, determined by the instruction decoder based on the
  // opcode. This is one-hot encoded according to the following format:
