@@ -305,7 +305,7 @@ We can add extra output signals from modules to connect below
   // retire register addresses (taken directly from the instruction fields)
   assign o_retire_rs1_raddr = curr_instruct[19:15];
   assign o_retire_rs2_raddr = curr_instruct[24:20];
-  assign o_retire_rd_waddr = curr_instruct[11:7];
+  assign o_retire_rd_waddr = rf_writeAddress;
 
   // retire register read data 
   // Ideally use the raw register-file read data
