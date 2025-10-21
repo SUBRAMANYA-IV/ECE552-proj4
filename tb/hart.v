@@ -224,7 +224,7 @@ rf rf(
   .o_rs2_rdata(regData2),
 
   .i_rd_waddr(curr_instruct[11:7]),
-  .i_rd_wen(RegWrite),
+  .i_rd_wen(regWrite),
   .i_rd_wdata(WB_DATA)
 );
 
