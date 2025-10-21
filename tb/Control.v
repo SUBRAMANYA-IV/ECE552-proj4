@@ -44,7 +44,7 @@ assign MemWrite = (i_opcode == S_type);    //check if store instruction
 assign ALUsrc1 = (i_opcode == auipc); //only use pc as alu operand for auipc
 
 //set high for Immediate, Load, and Store
-assign ALUsrc2 = (i_opcode == I_type) || (i_opcode == Load) || (i_opcode == S_type);
+assign ALUsrc2 = (i_opcode == I_type) || (i_opcode == Load) || (i_opcode == S_type) || (i_opcode==auipc);
 
 //enable register write if one of the following instructions else sets to 0
 assign RegWrite = (i_opcode == R_type) ||  //check if R-type
