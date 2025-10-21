@@ -1,3 +1,4 @@
+`default_nettype none
 // Branch control Module
 // as per schematic, bits are read from
 // right to left (2 mux's)
@@ -28,4 +29,4 @@ module branch (
     (branch & func3==3'b111)?((~slt||eq) ? 2'b10:2'b11):
     2'b11;
 endmodule
-
+`default_nettype wire

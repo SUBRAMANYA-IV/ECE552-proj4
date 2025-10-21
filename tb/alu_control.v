@@ -1,3 +1,5 @@
+`default_nettype none
+
 module alu_control (
     //bits [30, 14:12] of instruction, 30 is funct7[5], 14:12 is funct3
     input wire [3:0] instruction_bits,
@@ -27,36 +29,45 @@ module alu_control (
     //
     output wire o_arith,
 
-    // 3'b000: addition/subtraction if `i_sub` asserted //R type
-    // 3'b001: shift left logical //R type
-    // 3'b010, //R type
-    // 3'b011: set less than/unsigned if `i_unsigned` asserted //R type
-    // 3'b100: exclusive or //R type
-    // 3'b101: shift right logical/arithmetic if `i_arith` asserted //R type
-    // 3'b110: or //R type
-    // 3'b111: and //R type
+    // 3'b000: addition/subtraction if `i_sub` asserted 
+    // 3'b001: shift left logical 
+    // 3'b010, set less than 
+    // 3'b011: set less than/unsigned if `i_unsigned` asserted 
+    // 3'b100: exclusive or 
+    // 3'b101: shift right logical/arithmetic if `i_arith` asserted 
+    // 3'b110: or 
+    // 3'b111: and 
     output wire [2:0] o_opsel
 );
 
-  wire [2:0] ri_type;  //for R and I type instructions
+
   wire [2:0] sbuj_type;  //for S, B, U, J type instructions
 
+  wire [2:0] func3;
+  assign func3 =  instruction_bits[2:0];  //func 3 bits pulled out 
 
-  //logic to assign smaller conditional signals
-  assign o_arith = instruction_bits[3];  //funct7[5] bit
+  //Arithmetic shift right only for I and R type instructions 
+  assign o_arith = instruction_bits[3]  &&  (alu_op == 3'b000 || alu_op ==2'b001);
 
-  assign o_unsigned = instruction_bits[0];  //funct3[0] bit
+  //set for following: 
+  //R type and func3 = 011 (sltu)
+  //I Type and func3 = 011 (sltiu)
+  //B type and func3 = 110 (bltu)
+  //B type and func3 = 111 (bgeu)  
+  assign o_unsigned = (alu_op == 3'b000 && func3 == 3'b011) || 
+                      (alu_op == 3'b001 && func3 == 3'b011) ||
+                      (alu_op == 3'b011 && func3 == 3'b110) ||
+                      (alu_op == 3'b011 && func3 == 3'b111);  
 
-  assign o_sub = instruction_bits[3] && (alu_op == 3'b000);  //funct7[5] bit is 1
+  //Only set subtraction when in R type and func7 bit is set
+  assign o_sub = instruction_bits[3] && (alu_op == 3'b000);  
 
-  //logic to assign i_opsel
-  assign ri_type = instruction_bits[2:0];  //funct3 bits
+
   assign sbuj_type = 3'b000;
 
-  assign o_opsel = (alu_op == 3'b000 || alu_op == 3'b001) ? ri_type : sbuj_type;
-
-
-
+  assign o_opsel = (alu_op == 3'b000 || alu_op == 3'b001) ? func3 : sbuj_type;
 
 
 endmodule
+
+`default_nettype wire
