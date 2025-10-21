@@ -1,0 +1,8 @@
+[Group Member 1]: Eduardo Perez
+
+[Group Member 2]: Vedaant Nookala
+
+[Group Member 3]: Max Swanson
+
+We certify that our usage of LLMs is consistent with UW-Madison's academic integrity 
+policies.
