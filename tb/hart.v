@@ -183,12 +183,20 @@ assign curr_instruct = i_imem_rdata;  //assign current instruction to the input 
  Instantiate ID section of proccesor 
 */
 
+//////////Internal Wires////////////
+//to connect top-level register file to decode block
+wire[31:0] regData1;
+wire[31:0] regData2;
+wire regWrite;
+
 ID decode_I(
    .rst(i_rst),                    //input- to RF
    .clk(i_clk),                    //input- to RF
    .i_instruct(curr_instruct),     //input- full instruction input
-   .i_write_back(WB_DATA),         //input- from write back stage goes into RF write port      *************************fill in 
    .i_currentPC(current_PC),       //input- the current PC value (used for auipc instruction)
+   .o_RegWrite(regWrite),
+   .i_regData1(regData1),
+   .i_regData2(regData2),
 
    .o_jal(jal_C),            //output- from control unit
    .o_jalr(jalr_C),          //output- from control unit
@@ -204,6 +212,22 @@ ID decode_I(
    .func(func_val),          //output- combination of func7 and func3 for ALU control block
    .func3(func3_val)         //output- func 3 for branch logic 
 );
+
+rf rf(
+  .i_clk(i_clk),
+  .i_rst(i_rst),
+
+  .i_rs1_raddr(curr_instruct[19:15]),
+  .i_rs2_raddr(curr_instruct[24:20]),
+
+  .o_rs1_rdata(regData1),
+  .o_rs2_rdata(regData2),
+
+  .i_rd_waddr(curr_instruct[11:7]),
+  .i_rd_wen(RegWrite),
+  .i_rd_wdata(WB_DATA)
+);
+
 
 /* 
  Instantiate EX section of proccesor 

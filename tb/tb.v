@@ -123,7 +123,7 @@ module hart_tb ();
         end
 
         $display("Program halted after %d cycles.", cycles);
-        $display("r[a0]=%08h (%d)", dut.decode_I.register_file.mem[10], dut.decode_I.register_file.mem[10]);
+        $display("r[a0]=%08h (%d)", dut.rf.mem[10], dut.rf.mem[10]);
         $finish;
     end
 
