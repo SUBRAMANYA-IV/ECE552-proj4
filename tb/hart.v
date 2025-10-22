@@ -341,7 +341,7 @@ We can add extra output signals from modules to connect below
   assign o_retire_rs2_rdata = regData2;
 
   // retire write-back info (what is written back this cycle)
-  assign o_retire_rd_wdata = WB_DATA;
+  assign o_retire_rd_wdata = WriteDataReg;
 
   // retire PC values
   assign o_retire_pc = current_PC;
