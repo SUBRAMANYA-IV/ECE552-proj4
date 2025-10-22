@@ -218,6 +218,7 @@ Delcleration of any extra wires needed for connecting modules and for signals us
   wire [4:0] rf_writeAddress;
   assign rf_writeAddress = (regWrite) ? curr_instruct[11:7] : 5'b00000;
 
+ wire [31:0] WriteDataReg; 
   rf rf (
       .i_clk(i_clk),
       .i_rst(i_rst),
@@ -281,14 +282,13 @@ Delcleration of any extra wires needed for connecting modules and for signals us
       .o_nxtPC(next_PC)  //output- the next PC based off Mux select signals 
   );
 
+ wire [31:0] WriteDataMem; 
   assign o_dmem_addr = aligned_address;  //assign memory adress port to ALU result  
   assign o_dmem_ren  = MemRead_C;   //assign Memory Read enable signal 
   assign o_dmem_wen  = MemWrite_C;  //assign Memory Write enable signal 
   assign o_dmem_wdata = WriteDataMem;     //assign Memory Write data port to register output #2
   assign MEM_DATA = i_dmem_rdata;    //data returned from memory 
 
- wire [31:0] WriteDataMem; 
- wire [31:0] WriteDataReg; 
 
 S_extend dataEXT(
   .i_mask(mask),         

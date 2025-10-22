@@ -1,5 +1,5 @@
 # vsim -c work.hart_tb -do "run -all;quit" 
-# Start time: 19:11:10 on Oct 21,2025
+# Start time: 20:30:52 on Oct 21,2025
 # Loading sv_std.std
 # Loading work.hart_tb
 # Loading work.hart
@@ -16,6 +16,7 @@
 # Loading work.branch
 # Loading work.mask_gen
 # Loading work.MEM
+# Loading work.S_extend
 # Loading work.WB
 # run -all
 # Loading program.
@@ -144,7 +145,7 @@
 #   121 [000001e0] 00100073 r[xx]=xxxxxxxx r[xx]=xxxxxxxx 
 # Program halted after         121 cycles.
 # r[a0]=00000001 (         1)
-# ** Note: $finish    : tb.sv(141)
+# ** Note: $finish    : ./tb.sv(141)
 #    Time: 1225 ns  Iteration: 1  Instance: /hart_tb
-# End time: 19:11:10 on Oct 21,2025, Elapsed time: 0:00:00
+# End time: 20:30:52 on Oct 21,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0

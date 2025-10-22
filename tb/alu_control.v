@@ -43,27 +43,27 @@ module alu_control (
   wire [2:0] sbuj_type;  //for S, B, U, J type instructions
 
   wire [2:0] func3;
-  assign func3 =  instruction_bits[2:0];  //func 3 bits pulled out 
+  assign func3 = instruction_bits[2:0];  //func 3 bits pulled out 
 
   //Arithmetic shift right only for I and R type instructions 
-  assign o_arith = instruction_bits[3]  &&  (alu_op == 3'b000 || alu_op ==3'b001);
+  assign o_arith = instruction_bits[3] && (alu_op == 3'b000 || alu_op == 3'b001);
 
   //set for following: 
   //R type and func3 = 011 (sltu)
   //I Type and func3 = 011 (sltiu)
   //B type and func3 = 110 (bltu)
   //B type and func3 = 111 (bgeu)  
-  assign o_unsigned = (alu_op == 3'b000 && func3 == 3'b011) || 
-                      (alu_op == 3'b001 && func3 == 3'b011) ||
-                      (alu_op == 3'b011 && func3 == 3'b110) ||
-                      (alu_op == 3'b011 && func3 == 3'b111);  
+  assign o_unsigned = (alu_op == 3'b000 && func3 == 3'b011) || 
+                      (alu_op == 3'b001 && func3 == 3'b011) ||
+                      (alu_op == 3'b011 && func3 == 3'b110) ||
+                      (alu_op == 3'b011 && func3 == 3'b111);
 
   //Only set subtraction when in R type and func7 bit is set
-  assign o_sub = instruction_bits[3] && (alu_op == 3'b000);  
+  assign o_sub = instruction_bits[3] && (alu_op == 3'b000);
 
 
   assign sbuj_type = 3'b000;
-  assign o_opsel = (alu_op == 3'b000 || alu_op == 3'b001) ? func3 : sbuj_type;
+  assign o_opsel =(alu_op==3'b111)?3'b000:((alu_op == 3'b000 || alu_op == 3'b001) ? func3 : sbuj_type);
 
 
 endmodule
