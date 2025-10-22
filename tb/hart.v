@@ -214,9 +214,9 @@ Delcleration of any extra wires needed for connecting modules and for signals us
       .func3     (func3_val)       //output- func 3 for branch logic 
   );
 
-//wirte adress should be 0 when instruction does not write to register 
-wire [4:0] rf_writeAddress; 
-assign rf_writeAddress = (regWrite) ? curr_instruct[11:7]: 5'b00000; 
+  //wirte adress should be 0 when instruction does not write to register 
+  wire [4:0] rf_writeAddress;
+  assign rf_writeAddress = (regWrite) ? curr_instruct[11:7] : 5'b00000;
 
   rf rf (
       .i_clk(i_clk),
@@ -254,13 +254,26 @@ assign rf_writeAddress = (regWrite) ? curr_instruct[11:7]: 5'b00000;
       .o_inc_pc(PC_offset)          //output- The current PC + Immediate (used for branch adress calculation)
   );
 
+  
+  wire [31:0] aligned_address;
+  wire byte_hw_unsigned;
+  wire [3:0] mask;
 
+
+  mask_gen mask_gen (
+      .address(ALU_result),
+      .func3(func3_val),
+      .aligned_address(aligned_address),
+      .o_unsigned(byte_hw_unsigned),
+      .mask(mask),
+      .opcode(curr_instruct[6:0])
+  );
   /* 
  Instantiate MEM section of proccesor  (actual memory access done outside MEM module)
 */
 
   MEM memory_acces (
-      .i_aluResult(ALU_result),       //input- ALU result can be used for either memory adress or multiplexed to next PC
+      .i_aluResult(aligned_address),       //input- ALU result can be used for either memory adress or multiplexed to next PC
       .i_PC4(PC_plus4),  //input- previous PC+4 used as input for multiplexer
       .i_PCimm(PC_offset),  //input- previous PC+imm used as input for multiplexer 
       .i_MUXpc(PC_MUX_SEL),  //input- select signal used to select next PC

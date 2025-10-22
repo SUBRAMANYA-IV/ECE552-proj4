@@ -46,7 +46,7 @@ module alu_control (
   assign func3 =  instruction_bits[2:0];  //func 3 bits pulled out 
 
   //Arithmetic shift right only for I and R type instructions 
-  assign o_arith = instruction_bits[3]  &&  (alu_op == 3'b000 || alu_op ==2'b001);
+  assign o_arith = instruction_bits[3]  &&  (alu_op == 3'b000 || alu_op ==3'b001);
 
   //set for following: 
   //R type and func3 = 011 (sltu)
