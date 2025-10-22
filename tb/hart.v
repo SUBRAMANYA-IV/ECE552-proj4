@@ -230,7 +230,7 @@ Delcleration of any extra wires needed for connecting modules and for signals us
 
       .i_rd_waddr(rf_writeAddress),
       .i_rd_wen  (regWrite),
-      .i_rd_wdata(WB_DATA)
+      .i_rd_wdata(WriteDataReg)
   );
 
 
@@ -273,7 +273,7 @@ Delcleration of any extra wires needed for connecting modules and for signals us
 */
 
   MEM memory_acces (
-      .i_aluResult(aligned_address),       //input- ALU result can be used for either memory adress or multiplexed to next PC
+      .i_aluResult(ALU_result),       //input- ALU result can be used for either memory adress or multiplexed to next PC
       .i_PC4(PC_plus4),  //input- previous PC+4 used as input for multiplexer
       .i_PCimm(PC_offset),  //input- previous PC+imm used as input for multiplexer 
       .i_MUXpc(PC_MUX_SEL),  //input- select signal used to select next PC
@@ -281,11 +281,26 @@ Delcleration of any extra wires needed for connecting modules and for signals us
       .o_nxtPC(next_PC)  //output- the next PC based off Mux select signals 
   );
 
-  assign o_dmem_addr = ALU_result;  //assign memory adress port to ALU result  
+  assign o_dmem_addr = aligned_address;  //assign memory adress port to ALU result  
   assign o_dmem_ren  = MemRead_C;   //assign Memory Read enable signal 
   assign o_dmem_wen  = MemWrite_C;  //assign Memory Write enable signal 
-  assign o_dmem_wdata = Mem_WD;     //assign Memory Write data port to register output #2
+  assign o_dmem_wdata = WriteDataMem;     //assign Memory Write data port to register output #2
   assign MEM_DATA = i_dmem_rdata;    //data returned from memory 
+
+ wire [31:0] WriteDataMem; 
+ wire [31:0] WriteDataReg; 
+
+S_extend dataEXT(
+  .i_mask(mask),         
+  .i_unsign(byte_hw_unsigned),
+
+  .i_Rs2Data(Mem_WD),   //register data input 
+  .o_Memdata(WriteDataMem),           //aligned output based on mask 
+
+  .i_WB(WB_DATA),
+  .o_regData(WriteDataReg)
+);
+
 
   /* 
  Instantiate WB section of proccesor 
