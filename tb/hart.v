@@ -322,8 +322,8 @@ We can add extra output signals from modules to connect below
 
   // retire register read data 
   // Ideally use the raw register-file read data
-  assign o_retire_rs1_rdata = ALU_operand1;
-  assign o_retire_rs2_rdata = ALU_operand2;
+  assign o_retire_rs1_rdata = regData1;
+  assign o_retire_rs2_rdata = regData2;
 
   // retire write-back info (what is written back this cycle)
   assign o_retire_rd_wdata = WB_DATA;
