@@ -323,7 +323,7 @@ S_extend dataEXT(
 THIS section still needs to be checked and filled in properly (some values are being used as placeholders for now)
 We can add extra output signals from modules to connect below 
 */
-  assign o_dmem_mask = 4'b1111; //this used to control half word/byte loads and write (set to full word only for now)
+  assign o_dmem_mask = mask; //this used to control half word/byte loads and write (set to full word only for now)
 
   assign o_retire_valid = (i_rst) ? 1'b0 : 1'b1;  //one instruction should be done every cycle
   assign o_retire_inst = curr_instruct;
