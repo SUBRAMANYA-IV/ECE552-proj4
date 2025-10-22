@@ -14,10 +14,10 @@ module S_extend(
 
 assign o_Memdata = (i_mask == 4'b1111)?  i_Rs2Data :
                    (i_mask == 4'b1100)? { i_Rs2Data[15:0] , 16'h0}:
-                   (i_mask == 4'b0011)? { 16'h0 ,i_Rs2Data[15:0] }:
-                   (i_mask == 4'b0001)? { 24'h0 ,i_Rs2Data[7:0]  }:
-                   (i_mask == 4'b0010)? { 16'h0 ,i_Rs2Data[7:0] , 8'h0 }:
-                   (i_mask == 4'b0100)? { 8'h0 ,i_Rs2Data[7:0] , 16'h0 }:
+                   (i_mask == 4'b0011)? { {16{i_Rs2Data[15]}} ,i_Rs2Data[15:0] }:
+                   (i_mask == 4'b0001)? { {24{i_Rs2Data[7]}} ,i_Rs2Data[7:0]  }:
+                   (i_mask == 4'b0010)? { {16{i_Rs2Data[7]}} ,i_Rs2Data[7:0] , 8'h0 }:
+                   (i_mask == 4'b0100)? { {8{i_Rs2Data[7]}} ,i_Rs2Data[7:0] , 16'h0 }:
                    (i_mask == 4'b1000)? { i_Rs2Data[7:0], 24'h0 }:
                    i_Rs2Data; 
 
@@ -25,7 +25,8 @@ assign o_Memdata = (i_mask == 4'b1111)?  i_Rs2Data :
 assign o_regData = (i_mask ==  4'b1111) ? i_WB : 
                    ((i_mask == 4'b0011)  &  i_unsign)  ? { 16'h0 ,i_WB[15:0] }:
                    ((i_mask == 4'b0011)  & ~i_unsign)  ? { {16{i_WB[15]}} , i_WB[15:0] } :
-                   (i_mask  == 4'b1100)                ? { i_WB[15:0], 16'h0 }:
+                   (i_mask  == 4'b1100   & i_unsign)   ? {  16'h0,i_WB[31:16] }:
+                   (i_mask  == 4'b1100   & ~i_unsign)  ? {  {16{i_WB[15]}},i_WB[31:16] }:
                    ((i_mask == 4'b0001)  & ~i_unsign ) ? { {24{i_WB[7]}} ,i_WB[7:0]} : 
                    ((i_mask == 4'b0001)  & i_unsign)   ? { 24'h0, i_WB[7:0]} :
                    ((i_mask == 4'b0010)  & ~i_unsign)  ? { {16{i_WB[7]}} ,i_WB[7:0], 8'h0 }: 
